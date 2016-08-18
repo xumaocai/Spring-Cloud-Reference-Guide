@@ -5,7 +5,7 @@ $ cd spring-cloud-config-server
 $ ../mvnw spring-boot:run
 ----
 
-该服务是一个Spring Boot应用程序，所以如果你喜欢你可以在你的IDE开发工具启动它(主类是`ConfigServerApplication`)。然后使用一个客户端:
+这个Spring Boot应用服务可以运行在你的IDE开发工具里(主类是`ConfigServerApplication`)。然后试行一个客户端:
 
 ----
 $ curl localhost:8888/foo/development
@@ -15,10 +15,10 @@ $ curl localhost:8888/foo/development
 ]}
 ----
 
-指定属性来源默认的策略是复制Git仓库 (位置 `spring.cloud.config.server.git.uri`)并使用它初始化微型的`SpringApplication`.该微型应用程序的
-`Environment`中使用枚举属性来源，并通过JSON终端发布。
+初始化微型的`SpringApplication`应用属性默认从Git仓库(位置 `spring.cloud.config.server.git.uri`)拷贝.该微型应用程序的
+`Environment`中使用枚举属性来源，并通过JSON端点发布。
 
-HTTP服务资源格式:
+HTTP服务资源形式:
 
 ----
 /{application}/{profile}[/{label}]
@@ -45,11 +45,11 @@ spring:
           uri: https://github.com/spring-cloud-samples/config-repo
 ----
 
-=== Client Side Usage
+=== 客户端使用
 
-在应用程序使用这些功能, 只是作为一个Spring
-Boot应用程序依赖spring-cloud-config-client (例如查看config-client测试用例,或示例应用程序)构建.最方便的方式是添加
-`org.springframework.cloud:spring-cloud-starter-config`依赖。还有一个父pom并且BOM (`spring-cloud-starter-parent`)给Maven、Gradle、Spring CLI用户提供Spring IO版本管理属性文件。Maven配置示例:
+在应用程序使用这些功能, 构建Spring
+Boot应用程序依赖spring-cloud-config-client (例如查看config-client测试用例,或示例应用程序).最便捷的方式添加Spring Boot starter
+`org.springframework.cloud:spring-cloud-starter-config`依赖。还有父pom并且BOM (`spring-cloud-starter-parent`)给Maven、Gradle、Spring CLI用户提供Spring IO版本管理属性文件。Maven配置示例:
 
 [source,xml,indent=0]
 .pom.xml
@@ -97,7 +97,7 @@ Boot应用程序依赖spring-cloud-config-client (例如查看config-client测�
     <!-- repositories also needed for snapshots and milestones -->
 ----
 
-然后你可以创建一个标准的Spring Boot应用程序,像这简单的HTTP服务:
+像这简单的HTTP服务创建一个标准的Spring Boot应用:
 
 ----
 @SpringBootApplication
@@ -116,7 +116,7 @@ public class Application {
 }
 ----
 
-当它运行时，它将默认的从本地8888端口的配置服务获取外部配置，前提它是启动的.若要修改启动方式，您可以使用`bootstrap.properties` (像 `application.properties`但为应用程序上下文起引导方面作用)来修改配置服务的位置, 例如
+客户端运行时默认从本地8888端口的配置服务获取外部配置，前提是配置服务已启动.可以使用`bootstrap.properties` (像 `application.properties`对应用上下文引导阶段)修改启动方式来更改配置服务的位置, 例如
 
 ----
 spring.cloud.config.uri: http://myconfigserver.com
@@ -135,6 +135,6 @@ $ curl localhost:8080/env
 }
 ----
 
-(属性来源优先调用"configService:<远程仓库URL>/<文件名>" 带上"foo"属性"bar"值).
+(属性来源优先请求"configService:<远程仓库URL>/<文件名>" 带上"foo"属性"bar"值).
 
 NOTE: 属性来源名字的URL是Git仓库URL并不是配置服务URL.
